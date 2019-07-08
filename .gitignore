@@ -1,3 +1,5 @@
 .gradle/
 build/
 src/generated
+.idea
+bundle.zip

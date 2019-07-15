@@ -16,14 +16,48 @@ public class TykDispatcher extends DispatcherGrpc.DispatcherImplBase {
         System.out.println("*** Incoming Request ***");
         System.out.println("Hook name: " + request.getHookName());
 
-        final CoprocessObject.Object modifiedRequest = MyAuthHook(request);
-        responseObserver.onNext(modifiedRequest);
+        if (request.getHookName().equals("MyAuthCheck")) {    
+            final CoprocessObject.Object modifiedRequest = MyAuthHook(request);
+            responseObserver.onNext(modifiedRequest);
+            System.out.println("*** Auth Check Complete ***");
+        }
 
-        System.out.println("*** Transformed Request ***");
+        if (request.getHookName().equals("MyPreHook")) {    
+            final CoprocessObject.Object modifiedRequest = MyPreHook(request);
+            responseObserver.onNext(modifiedRequest);
+            System.out.println("*** PRE HOOK Complete ***");
+        }
 
+        if (request.getHookName().equals("session_to_jwt")) {    
+            final CoprocessObject.Object modifiedRequest = SessionToJWT(request);
+            responseObserver.onNext(modifiedRequest);
+            System.out.println("*** POST Session to JWT HOOK Complete ***");
+        }
+        
         responseObserver.onCompleted();
     }
 
+    /** Executed Before Authentication */
+    CoprocessObject.Object MyPreHook(CoprocessObject.Object request) {
+        CoprocessObject.Object.Builder builder = request.toBuilder();
+
+        
+        builder.getRequestBuilder().putSetHeaders("customheader", "customvalue");
+
+        return builder.build();
+    }
+
+    /** Executed Right before reverse proxy */
+    CoprocessObject.Object SessionToJWT(CoprocessObject.Object request) {
+        CoprocessObject.Object.Builder builder = request.toBuilder();
+
+        String authHeader = request.getRequest().getHeadersOrDefault("Authorization", "");
+        builder.getRequestBuilder().putSetHeaders("Authorization", "JWT " + authHeader);
+
+        return builder.build();
+    }
+
+    /** Successful Authentication is cached By Tyk using its ID Extractor */
     CoprocessObject.Object MyAuthHook(CoprocessObject.Object request) {
         String authHeader = request.getRequest().getHeadersOrDefault("Authorization", "");
         if(!authHeader.equals(FOOBAR)) {

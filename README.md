@@ -8,6 +8,8 @@ This repository provides a sample [gRPC](http://www.grpc.io/) plugin, written in
 A simple request dispatcher is implemented, based on [Tyk custom middleware hooks](https://tyk.io/docs/tyk-api-gateway-v1-9/javascript-plugins/middleware-scripting/) logic.
 A class implements the required hook methods.
 
+In addition to the custom authentication, this plugin also is enabled with 2 other hooks, allowing for 3 different hooks in the request lifecycle.
+
 ## The hook
 
 This plugin implements a single hook, it performs a header injection, you may see the code [here](https://github.com/TykTechnologies/tyk-plugin-demo-java/blob/master/src/main/java/com/tyktechnologies/tykmiddleware/TykDispatcher.java).

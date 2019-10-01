@@ -21,4 +21,4 @@ The [`manifest.json`](manifest.json) file describes the hooks implemented by thi
 
 To use it you must generate a bundle and load it into your Tyk API settings. [this guide](https://tyk.io/tyk-documentation/customise-tyk/plugins/rich-plugins/plugin-bundles/) will walk you through the process.
 
-Note that a plugin bundle is not necessary to run middleware.  It's simply a deployment option.  This blog post [here](https://tyk.io/blog/how-to-setup-custom-authentication-middleware-using-grpc-and-java/ describes how to use custom middleware without plugin bundles.
+Note that a plugin bundle is not necessary to run middleware.  It's simply a deployment option.  This blog post [here](https://tyk.io/blog/how-to-setup-custom-authentication-middleware-using-grpc-and-java/) describes how to use custom middleware without plugin bundles.

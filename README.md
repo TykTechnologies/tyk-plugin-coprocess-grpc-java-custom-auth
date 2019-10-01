@@ -17,6 +17,8 @@ This plugin implements a single hook, it performs authorization by comparing a h
 	gradle run
 
 ## Building a plugin bundle
+The [`manifest.json`](manifest.json) file describes the hooks implemented by this plugin.  It can be served via http server to Tyk Gateways.  A Tyk Gateway will load it into memory to understand how to talk to your custom plugin.  
 
-The [`manifest.json`](manifest.json) file describes the hooks implemented by this plugin, to use it you must generate a bundle and load it into your Tyk API settings, [this guide](https://tyk.io/tyk-documentation/customise-tyk/plugins/rich-plugins/plugin-bundles/) will walk you through the process or a blog post [here](https://tyk.io/blog/how-to-setup-custom-authentication-middleware-using-grpc-and-java/
+To use it you must generate a bundle and load it into your Tyk API settings. [this guide](https://tyk.io/tyk-documentation/customise-tyk/plugins/rich-plugins/plugin-bundles/) will walk you through the process.
 
+Note that a plugin bundle is not necessary to run middleware.  It's simply a deployment option.  This blog post [here](https://tyk.io/blog/how-to-setup-custom-authentication-middleware-using-grpc-and-java/ describes how to use custom middleware without plugin bundles.

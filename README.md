@@ -5,7 +5,7 @@ Java gRPC plugin
 
 This repository provides a sample [gRPC](http://www.grpc.io/) plugin, written in Java, intended to work as part of [Tyk](https://tyk.io/). Gradle is used.
 
-Simple auth logic is implemented, based on [Tyk custom middleware hooks](https://tyk.io/docs/tyk-api-gateway-v1-9/javascript-plugins/middleware-scripting/) logic.
+Simple auth logic is implemented, based on [Tyk custom middleware hooks](https://tyk.io/docs/customise-tyk/plugins/rich-plugins/rich-plugins-work/#coprocess-dispatcher-hooks) logic.
 A class implements the required hook methods.
 
 ## The hook
